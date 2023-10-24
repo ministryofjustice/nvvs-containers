@@ -35,4 +35,8 @@ RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_DIST_FILENA
   && mv kubectl /usr/local/bin/kubectl \
   && curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 \
   && chmod +x get_helm.sh \
-  && ./get_helm.sh
+  && ./get_helm.sh \
+  && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+  && unzip awscliv2.zip \
+  && ./aws/install -i /usr/local/aws-cli -b /usr/local/bin \
+  && rm awscliv2.zip
