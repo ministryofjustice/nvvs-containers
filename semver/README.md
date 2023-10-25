@@ -1,5 +1,4 @@
-bash-semver
-===========
+# bash-semver
 
 Increment semantic versioning strings in shell scripts.
 
