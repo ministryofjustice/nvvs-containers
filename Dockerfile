@@ -2,7 +2,8 @@ FROM ubuntu:23.10
 
 ARG PLATFORM=linux_amd64
 ARG TFENV_VERSION=3.0.0
-ARG TF_VERSIONS=(1.5.4 1.2.1 1.1.0 1.1.8 1.1.7 1.1.6 0.13 0.12 0.15)
+# ARG TF_VERSIONS=(1.5.4 1.2.1 1.1.0 1.1.8 1.1.7 1.1.6 0.13 0.12 0.15)
+ARG TF_VERSION=1.1.8
 ARG TFLINT_VERSION=0.48.0
 ARG TFLINT_AWS_RULESET_VERSION=0.22.1
 ARG KUBECTL_VERSION=v1.22.0
@@ -21,7 +22,7 @@ COPY .tflint.hcl.source /root/
 SHELL ["/bin/bash", "-c"]
 RUN apt-get update \
   && apt-get install -y curl wget make gettext unzip git \
-  && git clone --single-branch https://github.com/tfutils/tfenv.git /opt/.tfenv \
+  && git clone --single-branch https://github.com/tfutils/tfenv.git /opt/.tfenv 
 #  && wget https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_DIST_FILENAME} \
 #  && wget https://releases.hashicorp.com/terraform/${TF_VERSION}/${TF_DIST_CHECKSUM_FILENAME} \
 #  && set -o pipefail && grep ${PLATFORM} ${TF_DIST_CHECKSUM_FILENAME} | sha256sum -c - \
@@ -49,6 +50,14 @@ RUN apt-get update \
 # make tfenv callable during build
 ENV PATH "/opt/.tfenv/bin:$PATH"
 
-# install proper terraform version
-RUN for TFV in ${TF_VERSIONS[*]}; do tfenv install $TFV; done \
-    && tfenv use ${TF_VERSION[1]}
+# # install proper terraform version
+# RUN for TFV in ${TF_VERSIONS[*]}; do tfenv install $TFV; done \
+#     && tfenv use ${TFV[0]}
+# RUN for TFV in "${TF_VERSIONS[@]}"; do \
+#     echo "Current Terraform version: $TFV" && \
+#     tfenv install $TFV; \
+# done
+
+# Use the first installed version as the default
+RUN tfenv install $TF_VERSION
+RUN tfenv use $TF_VERSION
