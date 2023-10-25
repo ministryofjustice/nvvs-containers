@@ -2,10 +2,10 @@
 
 REGISTRY		:= ghcr.io
 GITHUB_OWNER	:= $$(git config remote.origin.url | cut -d : -f 2 | cut -d / -f 1)
-NAME   			:= ${GITHUB_OWNER}/nvvs/terraform
-TAG    			:= $$(git log -1 --pretty=%h)
-IMG    			:= ${NAME}:${TAG}
-LATEST 			:= ${NAME}:latest
+NAME			:= ${GITHUB_OWNER}/nvvs/terraform
+TAG				:= $$(git log -1 --pretty=%h)
+IMG				:= ${NAME}:${TAG}
+LATEST			:= ${NAME}:latest
 
 CURRENT_VERSION := $$(git describe --abbrev=0)
 CURRENT_NUMBER	:= $$(echo $(CURRENT_VERSION) | cut -d "v" -f 2)
