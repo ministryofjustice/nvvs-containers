@@ -2,7 +2,7 @@
 
 REGISTRY		:= ghcr.io
 GITHUB_OWNER	:= $$(git config remote.origin.url | cut -d : -f 2 | cut -d / -f 1)
-NAME			:= ${GITHUB_OWNER}/nvvs/terraform
+NAME			:= ${GITHUB_OWNER}/nvvs/terraforms
 TAG				:= $$(git log -1 --pretty=%h)
 IMG				:= ${NAME}:${TAG}
 LATEST			:= ${NAME}:latest
