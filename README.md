@@ -22,6 +22,7 @@ make build
 Suggestion for use with [AWS-VAULT](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#configure-aws-vault)
 
 #### Freeflow
+
 Create an alias for use with the local build
 
 ```shell
@@ -42,21 +43,21 @@ alias tooldgh='docker run --rm -ti -v $(pwd):/data --env-file <(aws-vault exec $
 
 ### Tools included
 
-See the [Dockerfile](./Dockerfile) for full details. However initially this container is a large utility container to reduce developer friction while upgrading the repositories to a consistent version(s) of Terraform. 
+See the [Dockerfile](./Dockerfile) for full details. However initially this container is a large utility container to reduce developer friction while upgrading the repositories to a consistent version(s) of Terraform.
 
-* Terraform (via TFENV)
-* AWS CLI v2
-* TFLINT
-* kubectl
-* helm
+- Terraform (via TFENV)
+- AWS CLI v2
+- TFLINT
+- kubectl
+- helm
 
 ### Create tagged release
 
 NOTE: This needs refining.
 
-* Push the branch to github and get a pull request approved.
-* Merge to main
-* Depending on the increment run `make tag SEMVAR=[ patch | minor | major ]`
+- Push the branch to github and get a pull request approved.
+- Merge to main
+- Depending on the increment run `make tag SEMVAR=[ patch | minor | major ]`
 
 ## Example usage in Makefile
 
