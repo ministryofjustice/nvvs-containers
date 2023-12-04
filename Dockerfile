@@ -19,7 +19,7 @@ COPY .tflint.hcl.source /root/
 ENV PATH "/opt/.tfenv/bin:$PATH"
 SHELL ["/bin/bash", "-c"]
 RUN apt-get update \
-  && apt-get install -y curl wget make gettext unzip git jq dateutils \
+  && apt-get install -y curl wget make gettext unzip git jq dateutils apache2-utils mysql-client \
   && git clone --single-branch https://github.com/tfutils/tfenv.git /opt/.tfenv \
   && wget https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/tflint_${PLATFORM}.zip \
   && wget https://github.com/terraform-linters/tflint/releases/download/v${TFLINT_VERSION}/checksums.txt \
