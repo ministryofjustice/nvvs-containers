@@ -38,6 +38,9 @@ RUN apt-get update \
   && unzip awscliv2.zip \
   && ./aws/install -i /usr/local/aws-cli -b /usr/local/bin \
   && rm awscliv2.zip \
+  && curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb" \
+  && dpkg -i session-manager-plugin.deb \
+  && rm -f session-manager-plugin.deb \
   && for version in $TF_VERSIONS; do \
       tfenv install "$version"; \
       done;
