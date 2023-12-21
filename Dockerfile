@@ -1,4 +1,4 @@
-FROM ubuntu:23.10
+FROM ubuntu:24.04
 
 ARG PLATFORM=linux_amd64
 ARG TFENV_VERSION=3.0.0
